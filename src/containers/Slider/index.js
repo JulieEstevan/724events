@@ -10,17 +10,24 @@ const Slider = () => {
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
     new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
   );
+  const nextCard = () => {
+    setTimeout(() => { 
+      if (byDateDesc) {
+        setIndex(index < byDateDesc.length - 1 ? index + 1 : 0)
+      }
+    }, 20000)
+  };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex(prevIndex => (prevIndex < byDateDesc.lenght - 1 ? prevIndex + 1 : 0))
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [byDateDesc])
+    nextCard();
+  });
 
-  const handleRadioChange = (radioIdx) => {
-    setIndex(radioIdx)
-  }
+  // const handleRadioChange = (radioIdx) => {
+    // console.log("radioIdx :", radioIdx)
+    // console.log("index :", index)
+    // setIndex(radioIdx)
+    // console.log("index 2 :", index)
+  // }
 
   return (
     <div className="SlideCardList">
@@ -46,7 +53,8 @@ const Slider = () => {
               type="radio"
               name="radio-button"
               checked={index === radioIdx}
-              onChange={() => handleRadioChange(radioIdx)}
+              // onChange={() => handleRadioChange(radioIdx)}
+              onChange={() => {}}
             />
           ))}
         </div>
