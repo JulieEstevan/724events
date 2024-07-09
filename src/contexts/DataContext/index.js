@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { act } from "react";
 import {
   createContext,
   useCallback,
@@ -20,10 +21,8 @@ export const api = {
 export const DataProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
-  // Ajout afin de stocker l'event le plus recent
   const [last, setLast] = useState(null);
-
-// Ajout afin de surveiller et trier data pour definir last selon l'event le plus recent 
+ 
 useEffect(() => {
   if (data && data.events) {
     const sortedEvents = data.events.sort((a, b) => new Date(b.date) - new Date(a.date))

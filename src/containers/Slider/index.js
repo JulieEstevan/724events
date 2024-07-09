@@ -15,19 +15,12 @@ const Slider = () => {
       if (byDateDesc) {
         setIndex(index < byDateDesc.length - 1 ? index + 1 : 0)
       }
-    }, 20000)
+    }, 5000)
   };
 
   useEffect(() => {
     nextCard();
   });
-
-  // const handleRadioChange = (radioIdx) => {
-    // console.log("radioIdx :", radioIdx)
-    // console.log("index :", index)
-    // setIndex(radioIdx)
-    // console.log("index 2 :", index)
-  // }
 
   return (
     <div className="SlideCardList">
@@ -39,7 +32,8 @@ const Slider = () => {
               <div className="SlideCard__description">
                 <h3>{event.title}</h3>
                 <p>{event.description}</p>
-                <div>{getMonth(new Date(event.date))}</div>
+                <div>{getMonth(new Date(event.date))}
+                </div>
               </div>
             </div>
           </div>
@@ -53,7 +47,6 @@ const Slider = () => {
               type="radio"
               name="radio-button"
               checked={index === radioIdx}
-              // onChange={() => handleRadioChange(radioIdx)}
               onChange={() => {}}
             />
           ))}
